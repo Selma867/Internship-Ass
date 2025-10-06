@@ -1,0 +1,19 @@
+{
+  "name": "registration-api-frontend",
+  "version": "1.0.0",
+  "description": "TypeScript frontend for registration API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "typescript": "^5.1.6",
+    "ts-node": "^10.9.1"
+  }
+}
