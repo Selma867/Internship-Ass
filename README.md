@@ -1,35 +1,45 @@
-Registration API
+# Registration API
+
+![Node.js](https://img.shields.io/badge/Node.js-16+-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue)
+![Express](https://img.shields.io/badge/Express-4.x-lightgrey)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 A complete Node.js & TypeScript REST API for user registration with full CRUD operations. This API handles user registration with personal information, residential address, and postal address, storing data in PostgreSQL.
 
-🚀 Features
-Full CRUD Operations - Create, Read, Update, Delete users
+---
 
-RESTful API built with Node.js, Express, and TypeScript
+## 🚀 Features
+- Full CRUD Operations - Create, Read, Update, Delete users  
+- RESTful API built with Node.js, Express, and TypeScript  
+- PostgreSQL database with JSONB storage  
+- Input validation using Joi  
+- CORS enabled for frontend integration  
+- Error handling with proper HTTP status codes  
+- TypeScript for type safety  
+- Connection pooling for optimal performance  
 
-PostgreSQL database with JSONB storage
+---
 
-Input validation using Joi
+## 📋 API Endpoints
 
-CORS enabled for frontend integration
+| Method | Endpoint           | Description         | Request Body           |
+|--------|------------------|-------------------|----------------------|
+| GET    | /health           | Health check       | None                 |
+| GET    | /api              | API information    | None                 |
+| POST   | /api/register     | Register a new user| JSON with user data  |
+| GET    | /api/users        | Get all users      | None                 |
+| GET    | /api/users/:id    | Get user by ID     | None                 |
+| PUT    | /api/users/:id    | Update user by ID  | Partial user data    |
+| DELETE | /api/users/:id    | Delete user by ID  | None                 |
 
-Error handling and proper HTTP status codes
+---
 
-TypeScript for type safety
+## 🗂️ Data Structure
 
-Connection pooling for optimal performance
-
-📋 API Endpoints
-Method	Endpoint	Description	Request Body
-GET	/health	Health check	None
-GET	/api	API information	None
-POST	/api/register	Register a new user	User registration data
-GET	/api/users	Get all users	None
-GET	/api/users/:id	Get user by ID	None
-PUT	/api/users/:id	Update user by ID	Partial user data
-DELETE	/api/users/:id	Delete user by ID	None
-🗂️ Data Structure
-Personal Information
-typescript
+### Personal Information
+```typescript
 {
   firstName: string;      // 2-50 characters
   lastName: string;       // 2-50 characters  
@@ -39,23 +49,23 @@ typescript
   nationality: string;    // 2-50 characters
 }
 Address Information
-typescript
 {
   street: string;         // 5-100 characters
-  city: string;          // 2-50 characters
-  state: string;         // 2-50 characters
-  postalCode: string;    // 3-20 characters
-  country: string;       // 2-50 characters
+  city: string;           // 2-50 characters
+  state: string;          // 2-50 characters
+  postalCode: string;     // 3-20 characters
+  country: string;        // 2-50 characters
 }
 Complete User Registration
-typescript
 {
   personalInfo: PersonalInfo;
   residentialAddress: Address;
   postalAddress: Address;
 }
+
 🛠️ Installation & Setup
 Prerequisites
+
 Node.js 16+
 
 PostgreSQL 12+
@@ -63,41 +73,67 @@ PostgreSQL 12+
 npm or yarn
 
 1. Clone the Repository
-bash
 git clone <your-repository-url>
 cd registration-api
+
 2. Install Dependencies
-bash
 cd backend
 npm install
+
 3. Database Setup
+
 Option A: Auto Setup (Recommended)
-The API will automatically create tables when first started
+
+The API will automatically create tables when first started.
+
+Option B: Manual PostgreSQL Setup
+
+-- Connect to PostgreSQL
+psql -U postgres
+
+-- Create database
+CREATE DATABASE registration_db;
+
+-- Exit
+\q
+
+4. Environment Configuration
+
+Create a .env file in the backend directory:
+
 # Database Configuration
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=registration_db
 DB_USER=postgres
-DB_PASSWORD=Orlando@2025
+DB_PASSWORD=your_postgres_password
 
 # Server Configuration
 PORT=3000
 NODE_ENV=development
+
 5. Run the Application
+
 Development Mode
-bash
+
 npm run dev
+
+
 Production Mode
-bash
+
 npm run build
 npm start
+
 🧪 API Testing
 Using PowerShell
-Test Health Endpoint
-powershell
+
+Health Endpoint
+
 Invoke-RestMethod -Uri "http://localhost:3000/health" -Method Get
+
+
 Register a New User
-powershell
+
 $body = '{
   "personalInfo": {
     "firstName": "John",
@@ -124,16 +160,20 @@ $body = '{
 }'
 
 Invoke-RestMethod -Uri "http://localhost:3000/api/register" -Method Post -Body $body -ContentType "application/json"
+
+
 Get All Users
-powershell
+
 Invoke-RestMethod -Uri "http://localhost:3000/api/users" -Method Get
+
+
 Get User by ID
-powershell
-# Replace 1 with actual user ID
+
 Invoke-RestMethod -Uri "http://localhost:3000/api/users/1" -Method Get
+
+
 Update User
-powershell
-# Replace 1 with actual user ID
+
 $body = '{
   "personalInfo": {
     "firstName": "Jonathan",
@@ -146,13 +186,16 @@ $body = '{
 }'
 
 Invoke-RestMethod -Uri "http://localhost:3000/api/users/1" -Method Put -Body $body -ContentType "application/json"
+
+
 Delete User
-powershell
-# Replace 1 with actual user ID
+
 Invoke-RestMethod -Uri "http://localhost:3000/api/users/1" -Method Delete
+
 Using curl
+
 Register a New User
-bash
+
 curl -X POST http://localhost:3000/api/register \
   -H "Content-Type: application/json" \
   -d '{
@@ -179,9 +222,11 @@ curl -X POST http://localhost:3000/api/register \
       "country": "United Kingdom"
     }
   }'
+
 📊 Response Formats
+
 Success Response
-json
+
 {
   "success": true,
   "data": {
@@ -194,10 +239,15 @@ json
   },
   "message": "User registered successfully"
 }
+
+
 Error Response
-json
+
 {
   "success": false,
   "error": "Error description"
 }
 
+📝 License
+
+This project is licensed under the MIT License.
