@@ -106,7 +106,7 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=registration_db
 DB_USER=postgres
-DB_PASSWORD=your_postgres_password
+DB_PASSWORD=Orlando@2025
 
 # Server Configuration
 PORT=3000
